@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block title %}penjualan{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Penjualan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .slide-form {
+            position: relative;
+            height: 100%;
+            transition: transform 0.3s ease-in;
+        }
+
+        .slide-form.hidden {
+            transform: translateY(100%);
+        }
+
+        .slide-form.slide-up {
+            transform: translateY(-250%);
+        }
+
+        .slide-form.slide-down {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex;
+    align-items: flex-end;
+    justify-content: center; " class="has-background-black">
+        <h1 class="is-size-2 has-text-weight-bold is-primary is-centered has-text-centered has-background-black"
+            style="color: aliceblue;">
+            Transaksi Penjualan</h1>
+        <a href="#" class="has-background-black is-small has-text-primary" onclick="toggleForms()">
+            <span class="icon">
+                <i class="fas fa-exchange-alt"></i>
+            </span>
+            <span>Pindah</span>
+        </a>
+    </div>
+    <div class="slide-form slide-down" id="transaksi-form">
+        <h1 class="title is-4 has-text-centered">Tambah Transaksi</h1>
+        <form class="form bg-danger" method="POST" action="{{ url_for('transaksi') }}">
+            <div style="    display: flex;
+            justify-content: space-around;
+            flex-wrap: nowrap;">
+                <div class="field">
+                    <label class="label has-text-primary-light">Barang:</label>
+                    <div class="control d-flex">
+                        <div class="select is-primary">
+                            <select id="id_barang" name="id_barang" required>
+                                {% for brg in barang %}
+                                <option value="{{ brg[0] }}">{{ brg[1] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label has-text-primary">Jumlah:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="number" id="jumlah" name="jumlah" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label has-text-primary">Tanggal:</label>
+                    <div class="control">
+                        <input class="input is-primary" type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-grouped" style="justify-content: flex-end;">
+                <div class="control">
+                    <button class="button is-primary" type="submit">
+                        <span class="icon">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div style="position: relative;
+    top: -175px;" class="slide-form hidden slide-up" id="riwayat-form">
+        <h2 class="title is-4 has-text-centered ">Riwayat Transaksi</h2>
+        <table class="table is-bordered is-fullwidth">
+            <thead>
+                <tr class="has-background-primary">
+                    <th>No</th>
+                    <th>Nama Barang</th>
+                    <th>Jumlah</th>
+                    <th>Tanggal</th>
+                    <th>Pendapatan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for riwayat in riwayat_transaksi %}
+                <tr>
+                    <td>{{ riwayat[0] }}</td>
+                    <td>{{ riwayat[3] }}</td>
+                    <td>{{ riwayat[2] }}</td>
+                    <td>{{ riwayat[1] }}</td>
+                    <td>{{ riwayat[4] }}.000</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <div class="notification is-danger is-light">
+            <p class="has-text-danger">Total: {{ total_pendapatan }}.000</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            var transaksiForm = document.getElementById('transaksi-form');
+            var riwayatForm = document.getElementById('riwayat-form');
+
+            if (transaksiForm.classList.contains('slide-down')) {
+                transaksiForm.classList.remove('slide-down');
+                transaksiForm.classList.add('slide-up');
+
+                riwayatForm.classList.remove('slide-up');
+                riwayatForm.classList.add('slide-down');
+            } else {
+                transaksiForm.classList.remove('slide-up');
+                transaksiForm.classList.add('slide-down');
+
+                riwayatForm.classList.remove('slide-down');
+                riwayatForm.classList.add('slide-up');
+            }
+        }
+    </script>
+</body>
+
+</html>
+{% endblock %}

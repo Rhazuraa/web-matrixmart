@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block title %}Daftar Barang{% endblock %}</title>
+  <!-- Tambahkan CSS dan script lainnya yang diperlukan -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="js.js"></script>
+  <style>
+    body {
+      background-image: url('/path/to/image.jpg');
+      background-color: cream;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar is-cream">
+    <div class="container">
+      <a class="navbar-brand">
+        <span class="icon">
+          <i class="fas fa-briefcase" style="color: #0962fb;"></i>
+        </span>
+        <a href="/">Matrixmart</a>
+      </a>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="{{ url_for('transaksi') }}">Transaksi</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+</body>
+
+</html>

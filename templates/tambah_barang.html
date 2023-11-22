@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Tambah Barang{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <h1 class="title is-3 has-text-primary">Tambah Barang</h1>
+      <form method="POST" action="{{ url_for('tambah_barang') }}">
+        <div class="field">
+          <label for="nama_barang" class="label has-text-primary">Nama Barang:</label>
+          <div class="control">
+            <input type="text" id="nama_barang" class="input is-primary" name="nama_barang" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="harga" class="label has-text-primary">Harga:</label>
+          <div class="control">
+            <input type="text" id="harga" class="input is-primary" name="harga" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="stok" class="label has-text-primary">Stok:</label>
+          <div class="control">
+            <input type="text" id="stok" class="input is-primary" name="stok" required>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <button type="submit" class="button is-primary">Simpan</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

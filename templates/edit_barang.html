@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="card-content">
+        <h2 class="title is-4">Edit Barang</h2>
+        <form method="POST" action="/edit_barang/{{ barang[0] }}" class="container-fluid">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Nama Barang</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input type="text" class="input" id="nama_barang" name="nama_barang" value="{{ barang[1] }}"
+                                required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Stok</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input type="number" class="input" id="stok" name="stok" value="{{ barang[2] }}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Harga</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input type="number" class="input" id="harga" name="harga" value="{{ barang[3] }}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="field is-grouped" style="justify-content: flex-end;">
+                <div class="control">
+                    <button type="submit" class="button is-primary">
+                        <span class="icon">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span>Simpan</span>
+                    </button>
+                </div>
+                <div class="control">
+                    <a href="/" class="button is-secondary">
+                        <span class="icon">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span>Batal</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

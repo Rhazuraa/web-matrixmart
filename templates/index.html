@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Daftar Barang{% endblock %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body style="background-image: url('/path/to/image.jpg');">
+    <div class="container mx-auto">
+        <h1 class="text-center">Daftar Barang</h1>
+
+        <div class="p-4 bg-dark rounded-2 card m-3" style="display: grid;">
+            <a class="nav-link p-2" href="{{ url_for('tambah_barang') }}">
+                <i class="fas fa-plus"></i> Tambah Barang
+            </a>
+            <table class="col card-body text-center">
+                <tr class="text-bg-danger">
+                    <th>Nama Barang</th>
+                    <th>Stok</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                    <hr style="color: black;">
+                </tr>
+                {% for barang in barang %}
+                <tr class="text-light">
+                    <td>{{ barang[1] }}</td>
+                    <td>{{ barang[2] }}</td>
+                    <td>{{ barang[3] }}.000</td>
+                    <td>
+                        <a href="/edit_barang/{{ barang[0] }}" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+{% endblock %}
